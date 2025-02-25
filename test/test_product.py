@@ -1,3 +1,4 @@
+import pytest
 from src.product import Product
 
 
@@ -35,3 +36,42 @@ def test_product_str(first_product):
 
 def test_product_add(first_product, second_product):
     assert first_product + second_product == 6144.58
+
+
+def test_smartphone_init(smartphone1):
+    assert smartphone1.name == "Samsung Galaxy S23 Ultra"
+    assert smartphone1.description == "256GB, Серый цвет, 200MP камера"
+    assert smartphone1.price == 180000.0
+    assert smartphone1.quantity == 5
+    assert smartphone1.efficiency == 95.5
+    assert smartphone1.model == "S23 Ultra"
+    assert smartphone1.memory == 256
+    assert smartphone1.color == "Серый"
+
+def test_add_smartphone(smartphone1, smartphone2):
+    assert smartphone1 + smartphone2 == 2580000.0
+
+
+def test_add_smartphone_error(smartphone1):
+    with pytest.raises(TypeError):
+        smartphone1 + 1
+
+
+def test_lawn_grass_init(lawn_grass1):
+    assert lawn_grass1.name == "Газонная трава"
+    assert lawn_grass1.description == "Элитная трава для газона"
+    assert lawn_grass1.price == 500.0
+    assert lawn_grass1.quantity == 20
+    assert lawn_grass1.country == "Россия"
+    assert lawn_grass1.germination_period == "7 дней"
+    assert lawn_grass1.color == "Зеленый"
+
+
+def test_add_grass(lawn_grass1, lawn_grass2):
+    grass_sum = lawn_grass1 + lawn_grass2
+    assert grass_sum == 16750.0
+
+
+def test_add_grass_error(lawn_grass1):
+    with pytest.raises(TypeError):
+        lawn_grass1 + 1
