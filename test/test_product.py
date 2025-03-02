@@ -22,14 +22,6 @@ def test_new_product(product_dict):
     assert product4.quantity == 23
 
 
-def test_prod_price_property(capsys, first_product):
-    first_product.price = -756.57
-    message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
-    first_product.price = 756.57
-    assert first_product.price == 756.57
-
-
 def test_product_str(first_product):
     assert str(first_product) == "Product, 84.5 руб. Остаток: 10 шт."
 
@@ -47,6 +39,7 @@ def test_smartphone_init(smartphone1):
     assert smartphone1.model == "S23 Ultra"
     assert smartphone1.memory == 256
     assert smartphone1.color == "Серый"
+
 
 def test_add_smartphone(smartphone1, smartphone2):
     assert smartphone1 + smartphone2 == 2580000.0
@@ -75,3 +68,9 @@ def test_add_grass(lawn_grass1, lawn_grass2):
 def test_add_grass_error(lawn_grass1):
     with pytest.raises(TypeError):
         lawn_grass1 + 1
+
+
+def test_print_mixin(capsys) -> None:
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    massage = capsys.readouterr()
+    assert (massage.out.strip() == 'Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)')

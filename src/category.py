@@ -2,8 +2,16 @@ from typing import Any
 
 from src.product import Product
 
+from abc import ABC, abstractmethod
 
-class Category:
+
+class Base(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class Category(Base):
     """Класс описывающий каждую категорию товара"""
 
     category_count = 0
