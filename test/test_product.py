@@ -74,3 +74,15 @@ def test_print_mixin(capsys) -> None:
     Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     massage = capsys.readouterr()
     assert (massage.out.strip() == 'Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)')
+
+
+def test_product_add_error(smartphone2, lawn_grass2):
+    with pytest.raises(TypeError):
+        smartphone2 + lawn_grass2
+        smartphone2 + 3
+
+
+def test_empty_product() -> None:
+    with pytest.raises(ValueError) as e:
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+    assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"

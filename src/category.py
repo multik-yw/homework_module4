@@ -55,3 +55,13 @@ class Category(Base):
         for product in self.__products:
             products_list.append(product)
         return products_list
+
+    @property
+    def products_in_list(self):
+        return self.__products
+
+    def middle_price(self):
+        try:
+            return sum([products.price for products in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
